@@ -26,8 +26,10 @@ namespace ResistAutoCalculate
             int k = 0;
             double[] rInBox = { 0, -1, -0.5, -0.2 };
             double[,] aMatOut = new double[scale, scale];
-            for (k = 0; k < 1000; k++)
+            for (k = 0; k < 10000; k++)
             {
+                Console.WriteLine(k);
+                Console.WriteLine(min);
                 int horizon = scale * scale;
                 double[] aArr = new double[horizon];
                 double[] nod = new double[horizon];
