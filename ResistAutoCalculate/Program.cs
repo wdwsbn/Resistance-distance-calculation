@@ -26,7 +26,7 @@ namespace ResistAutoCalculate
             int k = 0;
             double[] rInBox = { 0, -1, -0.5, -0.2 };
             double[,] aMatOut = new double[scale, scale];
-            for (k = 0; k < 10000; k++)
+            for (k = 0; k <2000; k++)
             {
                 Console.WriteLine(k);
                 Console.WriteLine(min);
@@ -42,8 +42,10 @@ namespace ResistAutoCalculate
                         {
                             int rad = rd.Next(0, 4);
                             System.Threading.Thread.Sleep(1);
+                            
                             aMatInMatrix[i, j] = rInBox[rad];
-                            nod[i] = nod[i] - aMatInMatrix[i, j];
+                            aMatInMatrix[j, i] = aMatInMatrix[i, j];
+                            nod[i] = nod[i] - 2*aMatInMatrix[i, j];
                         }
                     }
                 }
