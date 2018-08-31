@@ -76,6 +76,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\MWArray.dll</HintPath>
     </Reference>
+    <Reference Include="netplot">
+      <HintPath>.\netplot.dll</HintPath>
+    </Reference>
     <Reference Include="ResistCalculate">
       <HintPath>.\ResistCalculate.dll</HintPath>
     </Reference>

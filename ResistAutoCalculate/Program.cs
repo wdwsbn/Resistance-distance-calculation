@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using netplot;
 using ResistCalculate; //添加引用
 using MathWorks.MATLAB.NET.Arrays;
 
@@ -14,6 +14,7 @@ namespace ResistAutoCalculate
     {
         static void Main(string[] args)
         {
+            MWArray OA = null;
             const double pi = 3.14159;
             Random rd = new Random();
             MWNumericArray nPole = 1;
@@ -24,19 +25,20 @@ namespace ResistAutoCalculate
             int nPolego = 0;
             int sPolego = 0;
             CRD crd = new CRD();
-            int scale = 7;
+            int scale = 8;
             double min = 99999;
             int i = 0;
             int j = 0;
             int k = 0;
             double[] rInBox = { 0, -1, -0.5, -0.2 ,0,0};
             double[,] aMatOut = new double[scale, scale];
-            for (k = 0; k <11100; k++)
+            for (k = 0; k <100; k++)
             {
                 Console.WriteLine(k);
                 Console.WriteLine(min);
                 int horizon = scale * scale;
                 double[] aArr = new double[horizon];
+                
                 double[] nod = new double[horizon];
                 double[,] aMatInMatrix = new double[scale, scale];
                 for (i = 0; i < scale; i++)
@@ -80,8 +82,8 @@ namespace ResistAutoCalculate
                                 if (now < min)
                                 {
                                     resistout = resist ;
-                                    
-                                        nPolego = i;
+                                     OA = new MWNumericArray(scale, scale, aArr);
+                                    nPolego = i;
                                     sPolego = j;
                                     min = now;
                                     for (i1 = 0; i1 < scale; i1++)
@@ -119,7 +121,8 @@ namespace ResistAutoCalculate
             Console.Write("最小偏差" + min);
             Console.Write("进入节点" + nPolego);
             Console.Write("跳出节点" + sPolego);
-
+            Givepic givepic = new Givepic();
+            givepic.netplot(OA);
             Console.ReadKey();
         }
 
